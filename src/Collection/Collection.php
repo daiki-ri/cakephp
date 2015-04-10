@@ -61,5 +61,4 @@ class Collection extends IteratorIterator implements CollectionInterface
             'count' => iterator_count($this),
         ];
     }
-
 }
