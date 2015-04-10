@@ -48,4 +48,18 @@ class Collection extends IteratorIterator implements CollectionInterface
 
         parent::__construct($items);
     }
+
+    /**
+     * Returns an array that can be used to describe the internal state of this
+     * object.
+     *
+     * @return array
+     */
+    public function __debugInfo()
+    {
+        return [
+            'count' => $this->count(),
+        ];
+    }
+
 }

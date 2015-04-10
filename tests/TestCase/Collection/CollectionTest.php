@@ -1163,4 +1163,32 @@ class CollectionTest extends TestCase
 
         $this->assertEquals([1, 2, 3, 1, 2, 3], $collection->toList());
     }
+
+    /**
+     * Tests __debugInfo() or debug() usage
+     *
+     * @return void
+     */
+    public function testDebug()
+    {
+        $items = [1, 2, 3];
+
+        $collection = new Collection($items);
+
+        $result = $collection->__debugInfo();
+        $expected = [
+            'count' => 3,
+        ];
+        $this->assertSame($expected, $result);
+
+        // Make sure it also works with non rewindable iterators
+        $iterator = new NoRewindIterator(new ArrayIterator($items));
+        $collection = new Collection($iterator);
+
+        $result = $collection->__debugInfo();
+        $expected = [
+            'count' => 3,
+        ];
+        $this->assertSame($expected, $result);
+    }
 }
