@@ -58,7 +58,7 @@ class Collection extends IteratorIterator implements CollectionInterface
     public function __debugInfo()
     {
         return [
-            'count' => $this->count(),
+            'count' => iterator_count($this),
         ];
     }
 
