@@ -1181,6 +1181,13 @@ class CollectionTest extends TestCase
         ];
         $this->assertSame($expected, $result);
 
+        // Calling it again will rewind
+        $result = $collection->__debugInfo();
+        $expected = [
+            'count' => 3,
+        ];
+        $this->assertSame($expected, $result);
+
         // Make sure it also works with non rewindable iterators
         $iterator = new NoRewindIterator(new ArrayIterator($items));
         $collection = new Collection($iterator);
@@ -1188,6 +1195,13 @@ class CollectionTest extends TestCase
         $result = $collection->__debugInfo();
         $expected = [
             'count' => 3,
+        ];
+        $this->assertSame($expected, $result);
+
+        // Calling it again will in this case not rewind
+        $result = $collection->__debugInfo();
+        $expected = [
+            'count' =>  0,
         ];
         $this->assertSame($expected, $result);
     }
